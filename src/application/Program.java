@@ -39,17 +39,17 @@ public class Program {
 
 			Comparator<String> comp = (s1, s2) -> s1.compareTo(s2);
 
-			List<String> emails = list.stream().filter(emp -> emp.getSalary() > salary).map(emp -> emp.getEmail())
+			List<String> emails = list.stream()
+					.filter(emp -> emp.getSalary() > salary)
+					.map(emp -> emp.getEmail())
 					.sorted(comp).collect(Collectors.toList());
 
 			emails.forEach(System.out::println);
 
-			double sum = 0.0;
-			for (Employee emp : list) {
-				if (emp.getName().charAt(0) == 'M') {
-					sum += emp.getSalary();
-				}
-			}
+			double sum = list.stream()
+					.filter(emp -> emp.getName().charAt(0) == 'M')
+					.map(emp -> emp.getSalary())
+					.reduce(0.0, (x, y) -> x + y);
 
 			System.out.println("Sum of salary of people whose name starts with 'M': " + String.format("%.2f", sum));
 
