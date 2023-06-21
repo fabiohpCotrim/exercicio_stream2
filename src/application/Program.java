@@ -44,6 +44,15 @@ public class Program {
 
 			emails.forEach(System.out::println);
 
+			double sum = 0.0;
+			for (Employee emp : list) {
+				if (emp.getName().charAt(0) == 'M') {
+					sum += emp.getSalary();
+				}
+			}
+
+			System.out.println("Sum of salary of people whose name starts with 'M': " + String.format("%.2f", sum));
+
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 
